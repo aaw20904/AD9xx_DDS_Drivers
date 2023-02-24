@@ -5,7 +5,8 @@
 #include "9834.h"
 #include "stm32f1xx_hal.h"
 
-
+/*the minimal frequency step = Fclock / 2^24 */
+const float FREQUENCY_STEP = AD9834_CLOCK / 0x10000000;
 
 //#define DRIVER_HAL
 /*pointer to a HAL driver handle*/

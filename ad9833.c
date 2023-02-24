@@ -1,5 +1,7 @@
  
 /**The library for AD9833 Analog Devices IC.It implements for the STM32 and HAL**/
+/********Author: Andrii Androsovych***************/
+
 #include "stm32f1xx_hal.h"
 #include "main.h"
  

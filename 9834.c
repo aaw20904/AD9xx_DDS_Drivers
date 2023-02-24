@@ -1,6 +1,6 @@
 /******************************************************/
 /****Bare-Metal non OS Device AD9834 Driver ****/
-/********Author: Andrew Androsovych***************/
+/********Author: Andrii Androsovych***************/
 
 #include "9834.h"
 #include "stm32f1xx_hal.h"

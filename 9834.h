@@ -6,8 +6,7 @@
 /***CLOCK FREQUENCY FOR the DDS IC*/
 #define AD9834_CLOCK 75000000.0
 
-/*the minimal frequency step = Fclock / 2^24 */
-const float FREQUENCY_STEP = AD9834_CLOCK / 0x10000000;
+
 
 #define  AD9834_B28 (1 << 13)
 #define AD9834_HLB (1 << 12)

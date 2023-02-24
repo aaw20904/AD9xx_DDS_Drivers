@@ -1,5 +1,5 @@
  
-
+/**The library for AD9833 Analog Devices IC.It implements for the STM32 and HAL**/
 #include "stm32f1xx_hal.h"
 #include "main.h"
  
@@ -8,7 +8,7 @@ extern SPI_HandleTypeDef hspi1;
  
 extern SPI_HandleTypeDef hspi1; 
 extern DMA_HandleTypeDef hdma_spi1_tx;
-/**adresses definition**/
+/** definition adresses of the AD9833 chip**/
 #define AD9833_CONTROL_REGISTER 0
 #define AD9833_FREQ1_REG (1 << 15)
 #define AD9833_FREQ0_REG (1 << 14)
@@ -25,6 +25,9 @@ extern DMA_HandleTypeDef hdma_spi1_tx;
 #define AD9833_CTRL_OPBITEN (1 << 5)
 #define AD9833_CTRL_DIV2 (1 << 3)
 #define AD9833_CTRL_HMODE (1 << 1)
+
+/**the minimal step of the frequency tuning  Delta= Fcrystal / 2^28
+in this case Fclock = 25MHz**/
 const float AD9833_freqStep = 0.093132;
 
 /*set FSYNC pin to HIGH: implement this function for your own configuration*/
@@ -45,7 +48,7 @@ const float AD9833_freqStep = 0.093132;
 }
 
 
-
+//calculate a raw data for writing into DDS IC`s registers 
 unsigned int AD9833_calculateDividerCoeficient (unsigned int frequency) {
   float result = (float)frequency / AD9833_freqStep;
   return (unsigned int)result;
@@ -102,7 +105,7 @@ short AD9833_writeToFREQ_DMA(unsigned int value, unsigned short reg) {
 
 
 
-/*initializing the device with PHASE0 and PFASE0 registers**/
+/*initializing the device with PHASE0 and FREQ0 registers**/
 short ad9833_Init(void) {
   unsigned char buf[2];
   unsigned short static dataToTransmit;

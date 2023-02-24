@@ -6,6 +6,7 @@
 #include "stm32f1xx_hal.h"
 
 
+
 //#define DRIVER_HAL
 /*pointer to a HAL driver handle*/
 extern SPI_HandleTypeDef hspi1;
@@ -40,7 +41,7 @@ void AD9834_WriteFrequency (char reg, float freq) {
 	/*define - in which register will be writing*/
 	  mask = (reg == 0) ? (1 << 14) : (1 << 15);
 	/*calculate frequency*/
-	rawData =  (unsigned int)((freq/ AD9834_CLOCK) * 268435456.0 );
+	rawData =  (unsigned int)(freq / FREQUENCY_STEP );
 	  unsigned short lsbBits = (rawData & 0x3fff);
     unsigned short msbBits = ((rawData >> 14) & 0x3fff);
     /*wite MSB bits -control word*/
